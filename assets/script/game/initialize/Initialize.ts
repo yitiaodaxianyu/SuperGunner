@@ -5,6 +5,7 @@
  * @LastEditTime: 2022-08-03 10:07:14
  */
 import { ecs } from "../../../../extensions/oops-plugin-framework/assets/libs/ecs/ECS";
+import { Account } from "../account/Account";
 import { InitResComp, InitResSystem } from "./bll/InitRes";
 
 /**
@@ -14,7 +15,11 @@ import { InitResComp, InitResSystem } from "./bll/InitRes";
  */
 @ecs.register('Initialize')
 export class Initialize extends ecs.Entity {
+     /** 帐号管理 */
+    account: Account = null!;
     protected init() {
+        this.account = ecs.getEntity<Account>(Account);
+        this.addChild(this.account);
         // 初始化游戏公共资源
         this.add(InitResComp);
     }

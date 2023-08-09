@@ -9,6 +9,9 @@ import { oops } from "../../../../../extensions/oops-plugin-framework/assets/cor
 import { ecs } from "../../../../../extensions/oops-plugin-framework/assets/libs/ecs/ECS";
 import { CCVMParentComp } from "../../../../../extensions/oops-plugin-framework/assets/module/common/CCVMParentComp";
 import { UIID } from "../../common/config/GameUIConfig";
+import { JsonUtil } from "../../../../../extensions/oops-plugin-framework/assets/core/utils/JsonUtil";
+import { TableRoleJob } from "../../common/table/TableRoleJob";
+import { TableRoleLevelUp } from "../../common/table/TableRoleLevelUp";
 
 const { ccclass, property } = _decorator;
 
@@ -35,7 +38,7 @@ export class LoadingViewComp extends CCVMParentComp {
         this.data.prompt = oops.language.getLangByID("loading_load_player");
 
         // 进入自定义游戏内容界面
-        oops.gui.open(UIID.Demo);
+        oops.gui.open(UIID.Room);
 
         // 关闭加载界面
         oops.gui.remove(UIID.Loading);
@@ -60,6 +63,11 @@ export class LoadingViewComp extends CCVMParentComp {
     private loadCustom() {
         // 加载游戏本地JSON数据的多语言提示文本
         this.data.prompt = oops.language.getLangByID("loading_load_json");
+        return new Promise(async (resolve, reject) => {
+            await JsonUtil.loadAsync(TableRoleJob.TableName);
+            await JsonUtil.loadAsync(TableRoleLevelUp.TableName);
+            resolve(null);
+        });
     }
 
     /** 加载初始游戏内容资源 */

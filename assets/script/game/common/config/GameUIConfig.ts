@@ -10,6 +10,9 @@ import { LayerType, UIConfig } from "../../../../../extensions/oops-plugin-frame
 export enum UIID {
     /** 资源加载界面 */
     Loading = 1,
+
+    Room,
+    Game,
     /** 弹窗界面 */
     Window,
     /** 加载与延时提示界面 */
@@ -21,6 +24,8 @@ export enum UIID {
 /** 打开界面方式的配置数据 */
 export var UIConfigData: { [key: number]: UIConfig } = {
     [UIID.Loading]: { layer: LayerType.UI, prefab: "gui/loading/loading" },
+    [UIID.Room]: { layer: LayerType.UI, prefab: "gui/room/room" },
+    [UIID.Game]: { layer: LayerType.UI, prefab: "gui/game/game" },
     [UIID.Netinstable]: { layer: LayerType.PopUp, prefab: "common/prefab/netinstable" },
     [UIID.Window]: { layer: LayerType.Dialog, prefab: "common/prefab/window" },
     [UIID.Demo]: { layer: LayerType.UI, prefab: "gui/demo/demo" },

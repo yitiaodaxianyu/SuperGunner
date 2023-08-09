@@ -12,6 +12,7 @@ import { ecs } from '../../extensions/oops-plugin-framework/assets/libs/ecs/ECS'
 import { UIConfigData } from './game/common/config/GameUIConfig';
 import { smc } from './game/common/SingletonModuleComp';
 import { EcsInitializeSystem, Initialize } from './game/initialize/Initialize';
+import { EcsAccountSystem } from './game/account/Account';
 
 const { ccclass, property } = _decorator;
 
@@ -31,5 +32,6 @@ export class Main extends Root {
 
     protected initEcsSystem() {
         oops.ecs.add(new EcsInitializeSystem());
+        oops.ecs.add(new EcsAccountSystem());
     }
 }
