@@ -35,8 +35,7 @@ export class AccountNetDataSystem extends ecs.ComblockSystem implements ecs.IEnt
                 // 设置本地存储的用户标识（用于下次登录不输入帐号）
                 this.setLocalStorage(data.id);
 
-                // 创建玩家角色对象
-                this.createRole(e, data);
+              
 
                 // 玩家登录成功事件
                 oops.message.dispatchEvent(GameEvent.LoginSuccess);
@@ -61,37 +60,6 @@ export class AccountNetDataSystem extends ecs.ComblockSystem implements ecs.IEnt
         e.remove(AccountNetDataComp);
     }
 
-    /** 创建角色对象（自定义逻辑） */
-    private createRole(e: Account, data: any) {
-        var role = ecs.getEntity<Role>(Role);
-
-        // 角色数据
-        role.RoleModel.id = data.id;
-        role.RoleModel.name = data.name;
-
-        // 角色初始战斗属性
-        role.RoleModelBase.power = data.power;
-        role.RoleModelBase.agile = data.agile;
-        role.RoleModelBase.physical = data.physical;
-
-        // 角色等级数据
-        role.upgrade(data.lv);
-
-        // 角色职业数据
-        role.RoleModelJob.id = data.jobId;
-
-        // 角色基础属性绑定到界面上显示
-        role.RoleModel.vmAdd();
-        // 角色等级属性绑定到界面上显示
-        role.RoleModelLevel.vmAdd();
-        // 角色初始基础属性绑定到界面上显示
-        role.RoleModelBase.vmAdd();
-
-        // 角色动画显示对象
-        role.load(oops.gui.game, v3(0, -300, 0));
-
-        e.AccountModel.role = role;
-    }
 
     /** 设置本地存储的用户标识 */
     private setLocalStorage(uid: number) {

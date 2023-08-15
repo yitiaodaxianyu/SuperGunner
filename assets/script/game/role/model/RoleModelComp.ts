@@ -37,10 +37,12 @@ export class RoleModelComp extends ecs.Comp {
     }
 
     /** 动画名资源 */
-    anim: string = "model1";
+    anim: string = "Monster_19";
 
     /** 角色属性 */
     attributes: RoleNumericMap = null!;
+    //是否所有子弹资源加载完毕
+    isAllAniLoad:boolean=false;
 
     constructor() {
         super();

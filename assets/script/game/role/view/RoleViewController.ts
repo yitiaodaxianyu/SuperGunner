@@ -5,9 +5,12 @@
  * @LastEditTime: 2022-06-14 17:57:33
  */
 
-import { Component, EventTouch, Node, UITransform, v3, _decorator } from "cc";
+import { Component, EventTouch, Node, UITransform, v3, _decorator, RigidBody2D, Vec2, Vec3 } from "cc";
 import { oops } from "../../../../../extensions/oops-plugin-framework/assets/core/Oops";
 import { Role } from "../Role";
+import { smc } from "../../common/ecs/SingletonModuleComp";
+import { JoystickDataType, SpeedType, instance } from "../../game/joystick/Joystick";
+import { RoleAnimatorType } from "../model/RoleEnum";
 
 const { ccclass, property } = _decorator;
 
@@ -17,24 +20,88 @@ export class RoleViewController extends Component {
     /** 角色对象 */
     role: Role = null!;
 
+    moveDir: Vec3 = new Vec3(0, 1, 0);
+    speedType: SpeedType = SpeedType.STOP;
+    moveSpeed = 0;
+
+    stopSpeed = 0;
+    normalSpeed = 1000;
+    fastSpeed = 1000;
     onLoad() {
-        oops.gui.game.on(Node.EventType.TOUCH_END, this.onTouchEnd, this);
+        //oops.gui.game.on(Node.EventType.TOUCH_END, this.onTouchEnd, this);
+
+        instance.on(Node.EventType.TOUCH_START, this.onTouchStart, this);
+        instance.on(Node.EventType.TOUCH_MOVE, this.onTouchMove, this);
+        instance.on(Node.EventType.TOUCH_END, this.onTouchEnd, this);
+    }
+    protected update(dt: number): void {
+        if (this.speedType !== SpeedType.STOP) {
+            this.move();
+        }
     }
 
-    private onTouchEnd(event: EventTouch) {
-        // 注：角色移动控制代码在RPG类游戏中，应该设计到地图模块监听触摸事件。因为测试代码只有一个角色，为了简少DEMO代码量，只表达程序设计思想
-        var uit = this.node.parent!.getComponent(UITransform)!;
-        var x = event.getUILocation().x - uit.contentSize.width / 2;
-        var y = event.getUILocation().y - uit.contentSize.height / 2;
-        this.role.move(v3(x, y));
+    onTouchStart() {
 
-        if (x < this.role.RoleView.node.position.x)
+    }
+
+    onTouchMove(event: EventTouch, data: JoystickDataType) {
+        this.speedType = data.speedType;
+        this.moveDir = data.moveVec;
+
+        this.onSetMoveSpeed(this.speedType);
+    }
+
+    onTouchEnd(event: EventTouch, data: JoystickDataType) {
+        this.speedType = data.speedType;
+
+        this.onSetMoveSpeed(this.speedType);
+        this.role.RoleView.node.getComponent(RigidBody2D).linearVelocity = new Vec2(0, 0);
+    }
+    /**
+* set moveSpeed by SpeedType
+* @param speedType
+*/
+    onSetMoveSpeed(speedType: SpeedType) {
+        switch (speedType) {
+            case SpeedType.STOP:
+                this.moveSpeed = this.stopSpeed;
+                this.role.RoleView.animator.setTrigger(RoleAnimatorType.StopWalk);
+                break;
+            case SpeedType.NORMAL:
+                this.moveSpeed = this.normalSpeed;
+                if(this.role.RoleView.animator.curStateName!=RoleAnimatorType.Walk){
+                    this.role.RoleView.animator.setTrigger(RoleAnimatorType.Walk);
+                }
+               
+                break;
+            case SpeedType.FAST:
+                this.moveSpeed = this.fastSpeed;
+                if(this.role.RoleView.animator.curStateName!=RoleAnimatorType.Walk){
+                    this.role.RoleView.animator.setTrigger(RoleAnimatorType.Walk);
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    /**
+   * 移动
+   */
+    move() {
+        const moveVec = this.moveDir.clone().multiplyScalar(this.moveSpeed / 20);
+        //const force = new Vec2(moveVec.x, moveVec.y);
+        const force = new Vec2(moveVec.x, 0);
+        
+        this.role.RoleView.node.getComponent(RigidBody2D).applyForceToCenter(force, true);
+        if (moveVec.x> 0)
             this.role.RoleView.animator.left();
         else
             this.role.RoleView.animator.right();
+      
     }
-
     onDestroy() {
-        oops.gui.game.off(Node.EventType.TOUCH_END, this.onTouchEnd, this);
+        instance.off(Node.EventType.TOUCH_START, this.onTouchStart, this);
+        instance.off(Node.EventType.TOUCH_MOVE, this.onTouchMove, this);
+        instance.off(Node.EventType.TOUCH_END, this.onTouchEnd, this);
     }
 }

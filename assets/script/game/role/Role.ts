@@ -18,6 +18,8 @@ import { RoleModelJobComp } from "./model/RoleModelJobComp";
 import { RoleModelLevelComp } from "./model/RoleModelLevelComp";
 import { RoleViewComp } from "./view/RoleViewComp";
 import { RoleViewInfoComp } from "./view/RoleViewInfoComp";
+import { EffectSingleCase } from "../../../../extensions/oops-plugin-framework/assets/libs/animator-effect/EffectSingleCase";
+import { Bullet } from "../bullet/Bullet";
 
 /** 
  * 角色实体 
@@ -44,6 +46,9 @@ export class Role extends ecs.Entity {
     // 视图层
     RoleView!: RoleViewComp;                    // 动画
     RoleViewInfo!: RoleViewInfoComp;            // 属性界面
+
+
+    bullet: Node = null!;
 
     protected init() {
         // 初始化实体常住 ECS 组件，定义实体特性
@@ -81,18 +86,34 @@ export class Role extends ecs.Entity {
     }
 
     /** 加载角色显示对象（cc.Component在创建后，添加到ECS框架中，使实体上任何一个ECS组件都可以通过 ECS API 获取到视图层对象 */
-    load(parent: Node, pos: Vec3 = Vec3.ZERO) {
-        var node = ViewUtil.createPrefabNode("role/role");
+    async load(parent: Node, pos: Vec3 = Vec3.ZERO) {
+        var node = await ViewUtil.createPrefabNodeAsync("role/role");
         var mv = node.getComponent(RoleViewComp)!;
         this.add(mv);
 
         node.parent = parent;
         node.setPosition(pos);
+
+        await EffectSingleCase.instance.loadAndShow("bullet/bullet_1");
+        this.RoleModel.isAllAniLoad = true;
     }
 
-    /** 攻击（DEMO没有战斗逻辑，所以只播放一个动画） */
+    /** 攻击 */
     attack() {
-        this.RoleView.animator.setTrigger(RoleAnimatorType.Attack);
+        if (this.RoleModel.isAllAniLoad == true) {
+            this.RoleView.animator.setTrigger(RoleAnimatorType.Attack);
+         
+            let node = EffectSingleCase.instance.show("bullet/bullet_1", this.bullet);
+            if(this.RoleView.animator.chaoxiang==0){
+                node.setPosition(new Vec3(this.RoleView.node.getPosition().x+121, this.RoleView.node.getPosition().y+73, 0));
+                node.getComponent(Bullet).setData(10,0);
+            }else{
+                node.setPosition(new Vec3(this.RoleView.node.getPosition().x-121, this.RoleView.node.getPosition().y+73, 0));
+                node.getComponent(Bullet).setData(10,180);
+            }    
+        }
+       
+
     }
 }
 

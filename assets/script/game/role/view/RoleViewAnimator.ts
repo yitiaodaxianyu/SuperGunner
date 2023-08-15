@@ -4,7 +4,7 @@
  * @LastEditors: dgflash
  * @LastEditTime: 2022-06-14 19:56:45
  */
-import { sp, _decorator } from "cc";
+import { sp, _decorator, log } from "cc";
 import AnimatorSpine from "../../../../../extensions/oops-plugin-framework/assets/libs/animator/AnimatorSpine";
 import { AnimatorStateLogic } from "../../../../../extensions/oops-plugin-framework/assets/libs/animator/core/AnimatorStateLogic";
 import { RoleAnimatorType, WeaponName } from "../model/RoleEnum";
@@ -38,6 +38,9 @@ export class RoleViewAnimator extends AnimatorSpine {
     /** 武器动画名 */
     private weaponAnimName: string = null!;
 
+    //朝向
+    public chaoxiang: number = 0;
+
     start() {
         super.start();
 
@@ -52,12 +55,20 @@ export class RoleViewAnimator extends AnimatorSpine {
 
     /** 面象朝左 */
     left() {
-        this.node.parent!.setScale(1, 1, 1);
+        if (this.chaoxiang == 1) {
+            this.chaoxiang = 0;
+            this.node.parent!.setScale(1, 1, 1);
+        }
+
     }
 
     /** 面象朝右 */
     right() {
-        this.node.parent!.setScale(-1, 1, 1);
+        if (this.chaoxiang == 0) {
+            this.chaoxiang = 1;
+            this.node.parent!.setScale(-1, 1, 1);
+        }
+
     }
 
     /** 当前动作换职业动画 */
@@ -75,7 +86,8 @@ export class RoleViewAnimator extends AnimatorSpine {
     protected playAnimation(animName: string, loop: boolean) {
         if (animName) {
             this.weaponAnimName = this.getWeaponAnimName();
-            var name = `${animName}_${this.weaponAnimName}`;
+            var name = "Side_" + animName;
+
             this._spine.setAnimation(0, name, loop);
         }
         else {

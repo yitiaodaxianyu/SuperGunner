@@ -29,7 +29,7 @@ export class RoleViewLoader extends Component {
     private load(name: string) {
         this.node.active = false;
 
-        var path = "role/"+name;
+        var path = "spine/testRole/"+name;
         oops.res.load(path, sp.SkeletonData, (err: Error | null, sd: sp.SkeletonData) => {
             if (err) {
                 console.error(`动画名为【${path}】的角色资源不存在`);
@@ -38,6 +38,7 @@ export class RoleViewLoader extends Component {
 
             this.spine.skeletonData = sd;
             this.spine.skeletonData.addRef();
+            this.spine.setSkin("Side1");
             this.node.active = true;
         });
     }

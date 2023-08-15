@@ -5,7 +5,7 @@
  * @LastEditTime: 2022-08-05 10:32:42
  */
 
-import { sp, _decorator } from "cc";
+import { sp, _decorator, Node } from "cc";
 import { ecs } from "../../../../../extensions/oops-plugin-framework/assets/libs/ecs/ECS";
 import { CCComp } from "../../../../../extensions/oops-plugin-framework/assets/module/common/CCComp";
 import { Role } from "../Role";
@@ -22,6 +22,8 @@ const { ccclass, property } = _decorator;
 export class RoleViewComp extends CCComp {
     @property({ type: sp.Skeleton, tooltip: '角色动画' })
     spine: sp.Skeleton = null!;
+
+    
 
     /** 角色动画资源管理 */
     loader: RoleViewLoader = null!;

@@ -26,7 +26,11 @@ export enum RoleAnimatorType {
     /** 受击 */
     Hurt = "Hurt",
     /** 死亡 */
-    Dead = "Dead"
+    Dead = "Dead",
+    /** 移动 */
+    Walk = "Walk",
+    /** 停止移动移动 */
+    StopWalk = "StopWalk"
 }
 
 /** 武器名 */
