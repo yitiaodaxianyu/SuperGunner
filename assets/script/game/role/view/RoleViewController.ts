@@ -25,8 +25,8 @@ export class RoleViewController extends Component {
     moveSpeed = 0;
 
     stopSpeed = 0;
-    normalSpeed = 1000;
-    fastSpeed = 1000;
+    normalSpeed = 5;
+    fastSpeed = 10;
     onLoad() {
         //oops.gui.game.on(Node.EventType.TOUCH_END, this.onTouchEnd, this);
 
@@ -38,6 +38,7 @@ export class RoleViewController extends Component {
         if (this.speedType !== SpeedType.STOP) {
             this.move();
         }
+        
     }
 
     onTouchStart() {
@@ -88,11 +89,11 @@ export class RoleViewController extends Component {
    * 移动
    */
     move() {
-        const moveVec = this.moveDir.clone().multiplyScalar(this.moveSpeed / 20);
+        const moveVec = this.moveDir.clone().multiplyScalar(this.moveSpeed);
         //const force = new Vec2(moveVec.x, moveVec.y);
         const force = new Vec2(moveVec.x, 0);
-        
-        this.role.RoleView.node.getComponent(RigidBody2D).applyForceToCenter(force, true);
+        this.role.RoleView.node.getComponent(RigidBody2D).linearVelocity=force;
+        //this.role.RoleView.node.getComponent(RigidBody2D).applyForceToCenter(force, true);
         if (moveVec.x> 0)
             this.role.RoleView.animator.left();
         else

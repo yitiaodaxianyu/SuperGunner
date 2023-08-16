@@ -58,6 +58,10 @@ export class RoleViewComp extends CCComp {
     }
 
     reset() {
-        this.node.destroy();
+        if(this.node){
+            this.node.destroy();
+        }
+        
+
     }
 }

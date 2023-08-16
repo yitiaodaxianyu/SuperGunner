@@ -8,12 +8,20 @@ import { Role } from '../../role/Role';
 import { smc } from '../../common/ecs/SingletonModuleComp';
 import { instance, JoystickDataType, SpeedType } from '../joystick/Joystick';
 import { RoleAnimatorType } from '../../role/model/RoleEnum';
+import { MonsterManager } from '../../monster/MonsterManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('GameView')
 export class GameView extends Component {
     @property({ type: Node })
     body: Node = null!;
+    //玩家层级
+    @property({ type: Node })
+    player: Node = null!;
+    //怪物层级
+    @property({ type: Node })
+    monster: Node = null!;
+
 
     @property({ type: Prefab })
     box: Prefab = null!;
@@ -59,18 +67,18 @@ export class GameView extends Component {
         // 角色职业数据
         role.RoleModelJob.id = data.jobId;
 
-        // 角色基础属性绑定到界面上显示
-        role.RoleModel.vmAdd();
-        // 角色等级属性绑定到界面上显示
-        role.RoleModelLevel.vmAdd();
-        // 角色初始基础属性绑定到界面上显示
-        role.RoleModelBase.vmAdd();
+
         role.bullet = this.bullet;
 
         // 角色动画显示对象
-        role.load(this.body, v3(0, -100, 0));
+        role.load(this.player, v3(0, -100, 0));
 
         smc.account.AccountModel.role = role;
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
+        
+
+
     }
     update(deltaTime: number) {
 
@@ -79,7 +87,9 @@ export class GameView extends Component {
         }
 
     }
-
+    protected onDestroy(): void {
+        
+    }
 
     onAttack(): void {
         smc.account.AccountModel.role.attack();

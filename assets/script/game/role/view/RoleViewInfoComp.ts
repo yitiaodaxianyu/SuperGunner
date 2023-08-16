@@ -26,20 +26,20 @@ export class RoleViewInfoComp extends CCComp {
     }
 
     private onTouchEnd(event: EventTouch) {
-        switch (event.target.name) {
-            case "btn_levelup":
-                var role = ecs.getSingleton(SingletonModuleComp).account.AccountModel.role;
-                role.upgrade();
-                break;
-            case "btn_close":
-                oops.gui.remove(UIID.Demo_Role_Info);
+        // switch (event.target.name) {
+        //     case "btn_levelup":
+        //         var role = ecs.getSingleton(SingletonModuleComp).account.AccountModel.role;
+        //         role.upgrade();
+        //         break;
+        //     case "btn_close":
+        //         oops.gui.remove(UIID.Demo_Role_Info);
 
-                // 注：模拟二次删除清理缓存
-                setTimeout(() => {
-                    oops.gui.remove(UIID.Demo_Role_Info);
-                }, 1000);
-                break;
-        }
+        //         // 注：模拟二次删除清理缓存
+        //         setTimeout(() => {
+        //             oops.gui.remove(UIID.Demo_Role_Info);
+        //         }, 1000);
+        //         break;
+        // }
 
         event.propagationStopped = true;
     }

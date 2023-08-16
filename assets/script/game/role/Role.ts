@@ -82,6 +82,7 @@ export class Role extends ecs.Entity {
     destroy(): void {
         // 如果该组件对象是由ecs系统外部创建的，则不可回收，需要用户自己手动进行回收。
         this.remove(RoleViewComp);
+        
         super.destroy();
     }
 
