@@ -57,6 +57,7 @@ export class Role extends ecs.Entity {
             RoleModelBaseComp,
             RoleModelJobComp,
             RoleModelLevelComp);
+            
     }
 
     /** 转职（ECS System处理逻辑，分享功能独立的业务代码） */
@@ -105,12 +106,13 @@ export class Role extends ecs.Entity {
             this.RoleView.animator.setTrigger(RoleAnimatorType.Attack);
          
             let node = EffectSingleCase.instance.show("bullet/bullet_1", this.bullet);
+            node.active=true;
             if(this.RoleView.animator.chaoxiang==0){
-                node.setPosition(new Vec3(this.RoleView.node.getPosition().x+121, this.RoleView.node.getPosition().y+73, 0));
-                node.getComponent(Bullet).setData(10,0);
+                node.setPosition(new Vec3(this.RoleView.node.getPosition().x+100, this.RoleView.node.getPosition().y+73, 0));
+                node.getComponent(Bullet).setData(30,0);
             }else{
-                node.setPosition(new Vec3(this.RoleView.node.getPosition().x-121, this.RoleView.node.getPosition().y+73, 0));
-                node.getComponent(Bullet).setData(10,180);
+                node.setPosition(new Vec3(this.RoleView.node.getPosition().x-100, this.RoleView.node.getPosition().y+73, 0));
+                node.getComponent(Bullet).setData(30,180);
             }    
         }
        

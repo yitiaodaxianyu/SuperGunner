@@ -11,6 +11,7 @@ import { Role } from "../Role";
 import { smc } from "../../common/ecs/SingletonModuleComp";
 import { JoystickDataType, SpeedType, instance } from "../../game/joystick/Joystick";
 import { RoleAnimatorType } from "../model/RoleEnum";
+import { Timer } from "../../../../../extensions/oops-plugin-framework/assets/core/common/timer/Timer";
 
 const { ccclass, property } = _decorator;
 
@@ -27,6 +28,7 @@ export class RoleViewController extends Component {
     stopSpeed = 0;
     normalSpeed = 5;
     fastSpeed = 10;
+    private timer: Timer = new Timer(0.05);
     onLoad() {
         //oops.gui.game.on(Node.EventType.TOUCH_END, this.onTouchEnd, this);
 
@@ -35,6 +37,10 @@ export class RoleViewController extends Component {
         instance.on(Node.EventType.TOUCH_END, this.onTouchEnd, this);
     }
     protected update(dt: number): void {
+        if (this.timer.update(dt)) {
+            smc.account.AccountModel.role.attack();
+        }
+       
         if (this.speedType !== SpeedType.STOP) {
             this.move();
         }

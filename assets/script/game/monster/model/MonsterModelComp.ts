@@ -1,5 +1,6 @@
 import { ecs } from "../../../../../extensions/oops-plugin-framework/assets/libs/ecs/ECS";
 import { VM } from "../../../../../extensions/oops-plugin-framework/assets/libs/model-view/ViewModel";
+import { MonsterData } from "./MonsterData";
 
 /** 数据层对象 */
 @ecs.register('MonsterModel')
@@ -17,6 +18,8 @@ export class MonsterModelComp extends ecs.Comp {
         this._name = value;
         this.vm.name = value;
     }
+
+    monsterData:MonsterData=new MonsterData();
     /** 动画名资源 */
     anim: string = "Monster_06";
     

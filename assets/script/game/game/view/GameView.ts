@@ -1,4 +1,4 @@
-import { _decorator, Component, EventTouch, instantiate, log, Node, Prefab, RigidBody2D, v3, Vec2, Vec3 } from 'cc';
+import { _decorator, Collider2D, Component, Contact2DType, EventTouch, instantiate, IPhysics2DContact, log, Node, PhysicsSystem2D, Prefab, RigidBody2D, v3, Vec2, Vec3 } from 'cc';
 import { oops } from '../../../../../extensions/oops-plugin-framework/assets/core/Oops';
 import { UIID } from '../../common/config/GameUIConfig';
 import { GameEvent } from '../../common/config/GameEvent';
@@ -47,7 +47,21 @@ export class GameView extends Component {
         }
         this.createRole(data);
 
+        // if (PhysicsSystem2D.instance) {
+        //     PhysicsSystem2D.instance.on(Contact2DType.BEGIN_CONTACT, this.onBeginContact, this);
+        //     PhysicsSystem2D.instance.on(Contact2DType.END_CONTACT, this.onEndContact, this);
+
+        // }
+
     }
+    // onBeginContact (selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
+    //     // 只在两个碰撞体开始接触时被调用一次
+    //     console.log('onBeginContact'+selfCollider.tag+"  "+otherCollider.tag);
+    // }
+    // onEndContact (selfCollider: Collider2D, otherCollider: Collider2D, contact: IPhysics2DContact | null) {
+    //     // 只在两个碰撞体结束接触时被调用一次
+    //     console.log('onEndContact');
+    // }
     /** 创建角色对象（自定义逻辑） */
     private createRole(data: any) {
         var role = ecs.getEntity<Role>(Role);
@@ -76,6 +90,8 @@ export class GameView extends Component {
         smc.account.AccountModel.role = role;
         MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
         MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
+       
+      
         
 
 

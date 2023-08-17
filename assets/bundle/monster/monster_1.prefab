@@ -294,7 +294,7 @@
     "_anchorPoint": {
       "__type__": "cc.Vec2",
       "x": 0.5,
-      "y": 0.5
+      "y": 0
     },
     "_id": ""
   },
@@ -328,7 +328,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
+      "width": 50,
       "height": 100
     },
     "_anchorPoint": {
@@ -406,7 +406,7 @@
     "__prefab": {
       "__id__": 21
     },
-    "tag": 0,
+    "tag": 2,
     "_group": 1,
     "_density": 1,
     "_sensor": false,
@@ -474,7 +474,6 @@
       "__id__": 0
     },
     "fileId": "c46/YsCPVOJYA4mWEpNYRx",
-    "instance": null,
-    "targetOverrides": null
+    "instance": null
   }
 ]

@@ -31,7 +31,7 @@ export class MonsterManager {
         monster.bullet = bullet;
 
         // 角色动画显示对象
-        monster.load(parent, v3(0, -100, 0));
+        monster.load(parent, v3(0, 0, 0));
 
     }
 }

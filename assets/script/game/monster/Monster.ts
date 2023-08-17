@@ -1,10 +1,11 @@
-import { Vec3 ,Node} from "cc";
+import { Vec3 ,Node, log} from "cc";
 import { ViewUtil } from "../../../../extensions/oops-plugin-framework/assets/core/utils/ViewUtil";
 import { EffectSingleCase } from "../../../../extensions/oops-plugin-framework/assets/libs/animator-effect/EffectSingleCase";
 import { ecs } from "../../../../extensions/oops-plugin-framework/assets/libs/ecs/ECS";
 import { MonsterBllComp } from "./bll/MonsterBllComp";
 import { MonsterModelComp } from "./model/MonsterModelComp";
 import { MonsterViewComp } from "./view/MonsterViewComp";
+import { MonsterAnimatorType } from "./model/MonsterEnum";
 
 /** Monster 模块 */
 @ecs.register(`Monster`)
@@ -33,6 +34,8 @@ export class Monster extends ecs.Entity {
 
         node.parent = parent;
         node.setPosition(pos);
+        await EffectSingleCase.instance.loadAndShow("monsterBullet/monsterBullet_1");
+        this.MonsterModel.isAllAniLoad = true;
 
     }
     /** 模块资源释放 */
@@ -40,6 +43,7 @@ export class Monster extends ecs.Entity {
         // 注: 自定义释放逻辑，视图层实现 ecs.IComp 接口的 ecs 组件需要手动释放
         super.destroy();
     }
+    
 }
 
 /** Monster 模块业务逻辑系统组件，如无业务逻辑处理可删除此对象 */
