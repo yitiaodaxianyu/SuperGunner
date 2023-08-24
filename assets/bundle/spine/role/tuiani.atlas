@@ -1,0 +1,20 @@
+
+tuiani.png
+size: 292,240
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhujue12
+  rotate: true
+  xy: 2, 109
+  size: 129, 288
+  orig: 129, 288
+  offset: 0, 0
+  index: -1
+zhujue17
+  rotate: true
+  xy: 2, 2
+  size: 105, 277
+  orig: 106, 277
+  offset: 0, 0
+  index: -1

@@ -6,9 +6,11 @@
   "files": [],
   "subMetas": {},
   "userData": {
-    "compressionType": {},
+    "compressionType": {
+      "wechatgame": "subpackage"
+    },
     "isRemoteBundle": {
-      "wechatgame": true
+      "wechatgame": false
     },
     "isBundle": true
   }

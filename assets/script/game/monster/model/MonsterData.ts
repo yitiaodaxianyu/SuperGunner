@@ -11,6 +11,8 @@ export class MonsterData {
     /** 防御力 */
     public defensive = 0;
      /** 攻击速度 */
-    public attackSpeed:number=2;
+    public attackSpeed:number=4;
+     /** 攻击速度 */
+    public moveSpeed:number=0.5;
 
 }

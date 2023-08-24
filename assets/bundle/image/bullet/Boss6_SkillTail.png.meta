@@ -2,7 +2,7 @@
   "ver": "1.0.25",
   "importer": "image",
   "imported": true,
-  "uuid": "0f263207-2f7c-4392-b869-cc546bb95e35",
+  "uuid": "ce964b98-3956-4795-9c14-6f51667d5969",
   "files": [
     ".json",
     ".png"
@@ -10,8 +10,8 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "0f263207-2f7c-4392-b869-cc546bb95e35@6c48a",
-      "displayName": "model1",
+      "uuid": "ce964b98-3956-4795-9c14-6f51667d5969@6c48a",
+      "displayName": "Boss6_SkillTail",
       "id": "6c48a",
       "name": "texture",
       "userData": {
@@ -22,7 +22,7 @@
         "mipfilter": "none",
         "anisotropy": 0,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "0f263207-2f7c-4392-b869-cc546bb95e35",
+        "imageUuidOrDatabaseUri": "ce964b98-3956-4795-9c14-6f51667d5969",
         "visible": true
       },
       "ver": "1.0.22",
@@ -37,6 +37,6 @@
     "fixAlphaTransparencyArtifacts": true,
     "hasAlpha": true,
     "type": "texture",
-    "redirect": "0f263207-2f7c-4392-b869-cc546bb95e35@6c48a"
+    "redirect": "ce964b98-3956-4795-9c14-6f51667d5969@6c48a"
   }
 }

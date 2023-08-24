@@ -27,6 +27,8 @@ export class RoleModelComp extends ecs.Comp {
     id: number = -1;
 
     private _name: string = "";
+
+    public attackSpeed:number=0.1;
     /** 昵称 */
     get name(): string {
         return this._name;

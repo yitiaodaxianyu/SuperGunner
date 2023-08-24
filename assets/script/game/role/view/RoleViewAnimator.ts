@@ -28,6 +28,13 @@ const { ccclass, property, requireComponent, disallowMultiple } = _decorator;
 @disallowMultiple
 @requireComponent(sp.Skeleton)
 export class RoleViewAnimator extends AnimatorSpine {
+
+    @property({ type: sp.Skeleton, tooltip: '角色上身' })
+    spineBody: sp.Skeleton = null!;
+
+    @property({ type: sp.Skeleton, tooltip: '角色披风' })
+    spinePifeng: sp.Skeleton = null!;
+
     /** 攻击行为完成 */
     onAttackComplete: Function = null!;
     /** 受击动作完成 */
@@ -40,6 +47,7 @@ export class RoleViewAnimator extends AnimatorSpine {
 
     //朝向
     public chaoxiang: number = 0;
+    
 
     start() {
         super.start();
@@ -52,23 +60,48 @@ export class RoleViewAnimator extends AnimatorSpine {
         asl.set(RoleAnimatorType.Dead, new RoleStateDead(this.role, anim));
         this.initArgs(asl, anim);
     }
+    //运动方向
+    private _direction:number=0;
+    private set direction(n:number){
 
+        if(n!=this._direction){
+            this._direction=n;
+            this.onStateChange(this._ac.curState, this._ac.curState);
+        }
+        
+    }
+    private get direction():number{
+        return this._direction;
+    }
     /** 面象朝左 */
-    left() {
+    left(direction:number) {
+        if(direction>0){
+            this.direction=1;
+        }else{
+            this.direction=0;
+        }
+       
         if (this.chaoxiang == 1) {
             this.chaoxiang = 0;
             this.node.parent!.setScale(1, 1, 1);
+            this.onStateChange(this._ac.curState, this._ac.curState);
         }
-
+       
     }
 
     /** 面象朝右 */
-    right() {
+    right(direction:number) {
+        if(direction>0){
+            this.direction=1;
+        }else{
+            this.direction=0;
+        }
         if (this.chaoxiang == 0) {
             this.chaoxiang = 1;
             this.node.parent!.setScale(-1, 1, 1);
+            this.onStateChange(this._ac.curState, this._ac.curState);
         }
-
+       
     }
 
     /** 当前动作换职业动画 */
@@ -76,7 +109,31 @@ export class RoleViewAnimator extends AnimatorSpine {
         // 状态机状态值未变时，不会触发状态变化事件，所以这里直接触发状态变化事件来触发后续流程
         this.onStateChange(this._ac.curState, this._ac.curState);
     }
+    //攻击状态改变
+    public changeAttackMode():void{
 
+        if(this.role.RoleView.animator.curStateName == RoleAnimatorType.Walk){
+            if(this.role.RoleView.controller.monsterDirection==0){
+                this.spineBody.setAnimation(0, "move", true);
+                this.spinePifeng.setAnimation(0, "move", true);
+            }else{
+                this.spineBody.setAnimation(0, "atk2", true);
+                this.spinePifeng.setAnimation(0, "atk2", true);
+            }  
+        }else{
+            if(this.role.RoleView.controller.monsterDirection==0){
+                this.spineBody.setAnimation(0, "idle", true);
+                this.spinePifeng.setAnimation(0, "idle", true);
+            }else{
+                this.spineBody.setAnimation(0, "atk2", true);
+                this.spinePifeng.setAnimation(0, "atk2", true);
+            }  
+        }
+       
+
+        
+        
+    }
     /**
      * 播放动画
      * @override
@@ -84,11 +141,36 @@ export class RoleViewAnimator extends AnimatorSpine {
      * @param loop 是否循环播放
      */
     protected playAnimation(animName: string, loop: boolean) {
+        
         if (animName) {
-            this.weaponAnimName = this.getWeaponAnimName();
-            var name = "Side_" + animName;
+           
+            if(animName=="Idle"){
+                this._spine.setAnimation(0, "idle", loop);
+               
+                
+            }else if(animName=="Walk"){
+    
+                if(this.chaoxiang==this.direction){
+                    this._spine.setAnimation(0, "move2", loop);
+                }else{
+                    this._spine.setAnimation(0, "move", loop);
+                }
 
-            this._spine.setAnimation(0, name, loop);
+            }
+            this.changeAttackMode();
+            // tack.trackTime=tack.animationEnd;
+            // this._spine.timeScale=-1;
+          
+           
+
+            // if (temp != null) {
+            //     if (animName == RoleAnimatorType.Attack) {
+            //         //攻击是动画速度和攻击速度同步
+            //         this._spine.timeScale = temp.animationEnd / this.role.RoleModel.attackSpeed;
+            //     } else {
+            //         this._spine.timeScale = 1;
+            //     }
+            // }
         }
         else {
             this._spine.clearTrack(0);

@@ -1,0 +1,48 @@
+
+rolebody.png
+size: 1383,381
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zhujue0
+  rotate: true
+  xy: 554, 2
+  size: 377, 411
+  orig: 377, 411
+  offset: 0, 0
+  index: -1
+zhujue1
+  rotate: true
+  xy: 1178, 124
+  size: 255, 123
+  orig: 255, 123
+  offset: 0, 0
+  index: -1
+zhujue10
+  rotate: true
+  xy: 967, 10
+  size: 103, 325
+  orig: 103, 325
+  offset: 0, 0
+  index: -1
+zhujue11
+  rotate: true
+  xy: 2, 21
+  size: 358, 550
+  orig: 358, 550
+  offset: 0, 0
+  index: -1
+zhujue16
+  rotate: false
+  xy: 1303, 85
+  size: 78, 294
+  orig: 79, 294
+  offset: 1, 0
+  index: -1
+zhujue8
+  rotate: true
+  xy: 967, 115
+  size: 264, 209
+  orig: 264, 209
+  offset: 0, 0
+  index: -1

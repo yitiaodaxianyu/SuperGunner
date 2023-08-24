@@ -2,7 +2,7 @@
   "ver": "1.0.25",
   "importer": "image",
   "imported": true,
-  "uuid": "bbc28626-2bdc-4087-9a02-08138b27a28a",
+  "uuid": "a9a0bd3f-80ce-44d4-98aa-5dab7f382686",
   "files": [
     ".json",
     ".png"
@@ -10,8 +10,8 @@
   "subMetas": {
     "6c48a": {
       "importer": "texture",
-      "uuid": "bbc28626-2bdc-4087-9a02-08138b27a28a@6c48a",
-      "displayName": "Monster_19",
+      "uuid": "a9a0bd3f-80ce-44d4-98aa-5dab7f382686@6c48a",
+      "displayName": "rolebody",
       "id": "6c48a",
       "name": "texture",
       "userData": {
@@ -22,7 +22,7 @@
         "mipfilter": "none",
         "anisotropy": 0,
         "isUuid": true,
-        "imageUuidOrDatabaseUri": "bbc28626-2bdc-4087-9a02-08138b27a28a",
+        "imageUuidOrDatabaseUri": "a9a0bd3f-80ce-44d4-98aa-5dab7f382686",
         "visible": true
       },
       "ver": "1.0.22",
@@ -37,6 +37,6 @@
     "fixAlphaTransparencyArtifacts": true,
     "hasAlpha": true,
     "type": "texture",
-    "redirect": "bbc28626-2bdc-4087-9a02-08138b27a28a@6c48a"
+    "redirect": "a9a0bd3f-80ce-44d4-98aa-5dab7f382686@6c48a"
   }
 }

@@ -100,24 +100,7 @@ export class Role extends ecs.Entity {
         this.RoleModel.isAllAniLoad = true;
     }
 
-    /** 攻击 */
-    attack() {
-        if (this.RoleModel.isAllAniLoad == true) {
-            this.RoleView.animator.setTrigger(RoleAnimatorType.Attack);
-         
-            let node = EffectSingleCase.instance.show("bullet/bullet_1", this.bullet);
-            node.active=true;
-            if(this.RoleView.animator.chaoxiang==0){
-                node.setPosition(new Vec3(this.RoleView.node.getPosition().x+100, this.RoleView.node.getPosition().y+73, 0));
-                node.getComponent(Bullet).setData(30,0);
-            }else{
-                node.setPosition(new Vec3(this.RoleView.node.getPosition().x-100, this.RoleView.node.getPosition().y+73, 0));
-                node.getComponent(Bullet).setData(30,180);
-            }    
-        }
-       
-
-    }
+   
 }
 
 export class EcsRoleSystem extends ecs.System {

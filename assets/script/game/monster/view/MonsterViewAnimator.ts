@@ -85,10 +85,19 @@ export class MonsterViewAnimator extends AnimatorSpine {
      */
     protected playAnimation(animName: string, loop: boolean) {
         if (animName) {
-          
+
             var name = "Side_" + animName;
-     
-            this._spine.setAnimation(0, name, loop);
+
+            var temp = this._spine.setAnimation(0, name, loop);
+            if (temp != null) {
+                if (animName == MonsterAnimatorType.Attack) {
+                    //攻击是动画速度和攻击速度同步
+                    this._spine.timeScale = temp.animationEnd / this.monster.MonsterModel.monsterData.attackSpeed;
+                } else {
+                    this._spine.timeScale = 1;
+                }
+            }
+
         }
         else {
             this._spine.clearTrack(0);

@@ -46,7 +46,13 @@ export class MonsterViewController extends Component {
 
         this.bt.setObject(this)
         this.bt.run();
-        this.canAttack = this.timer.update(dt);
+        if (this.monster.MonsterView.animator.curStateName == MonsterAnimatorType.Attack) {
+            this.canAttack = this.timer.update(dt);
+        }else{
+            this.timer.reset();
+            this.canAttack=true;
+        }
+       
 
     }
 
@@ -62,9 +68,9 @@ export class MonsterViewController extends Component {
                 this.monster.MonsterView.animator.right();
             }
 
-
+            this.monster.MonsterView.animator.setTrigger(MonsterAnimatorType.Attack);
             if (this.canAttack && this.monster.MonsterModel.isAllAniLoad == true) {
-                this.monster.MonsterView.animator.setTrigger(MonsterAnimatorType.Attack);
+              
                 let node = EffectSingleCase.instance.show("monsterBullet/monsterBullet_1", this.monster.bullet);
                 node.active = true;
                 if (this.monster.MonsterView.animator.chaoxiang == 0) {

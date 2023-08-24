@@ -90,11 +90,21 @@ export class GameView extends Component {
         smc.account.AccountModel.role = role;
         MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
         MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
-       
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
+
+
       
-        
-
-
     }
     update(deltaTime: number) {
 
@@ -107,9 +117,7 @@ export class GameView extends Component {
         
     }
 
-    onAttack(): void {
-        smc.account.AccountModel.role.attack();
-    }
+ 
     onToRoom(): void {
 
         oops.gui.open(UIID.Room);
