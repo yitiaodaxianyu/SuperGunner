@@ -23,7 +23,7 @@ export class MonsterManager {
 
      * @returns 
      */
-    public createMonsterById(id: number, parent: Node, bullet: Node): void {
+    public createMonsterById(id: number, parent: Node, bullet: Node, pos: Vec3 = Vec3.ZERO): void {
         var monster = ecs.getEntity<Monster>(Monster);
         // 角色数据
         monster.MonsterModel.id = id;
@@ -35,7 +35,7 @@ export class MonsterManager {
         monster.bullet = bullet;
 
         // 角色动画显示对象
-        monster.load(parent, v3(0, 0, 0));
+        monster.load(parent, pos);
         this.allMonster.push(monster);
 
     }

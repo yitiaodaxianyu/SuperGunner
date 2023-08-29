@@ -22,8 +22,17 @@ const { ccclass, property } = _decorator;
 @ccclass('MonsterViewController')
 export class MonsterViewController extends Component {
     /** 角色对象 */
-    monster: Monster = null!;
+    _monster: Monster = null!;
     //行为树
+
+    public set monster(r:Monster){
+        this._monster=r;
+        this.timer.step = this.monster.MonsterModel.monsterData.attackSpeed;
+        this.timer.reset();
+    }
+    public get monster():Monster{
+        return this._monster;
+    }
 
     private bt: BehaviorTree = null!;
     moveSpeed = 3;
@@ -38,8 +47,7 @@ export class MonsterViewController extends Component {
 
 
         this.bt = new BehaviorTree(new Selector(btns));
-        this.timer.step = this.monster.MonsterModel.monsterData.attackSpeed;
-        this.timer.reset();
+        
     }
 
     protected update(dt: number): void {
@@ -69,6 +77,7 @@ export class MonsterViewController extends Component {
             }
 
             this.monster.MonsterView.animator.setTrigger(MonsterAnimatorType.Attack);
+            this.monster.MonsterView.node.getComponent(RigidBody2D).linearVelocity = Vec2.ZERO;
             if (this.canAttack && this.monster.MonsterModel.isAllAniLoad == true) {
               
                 let node = EffectSingleCase.instance.show("monsterBullet/monsterBullet_1", this.monster.bullet);

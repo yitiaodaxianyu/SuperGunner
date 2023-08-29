@@ -78,30 +78,17 @@ export class GameView extends Component {
         // 角色等级数据
         role.upgrade(data.lv);
 
-        // 角色职业数据
-        role.RoleModelJob.id = data.jobId;
 
 
         role.bullet = this.bullet;
 
         // 角色动画显示对象
-        role.load(this.player, v3(0, -100, 0));
+        role.load(this.player, v3(0, -300, 0));
 
         smc.account.AccountModel.role = role;
-        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
-        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
-        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
-        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
-        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
-        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
-        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
-        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
-        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
-        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
-        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
-        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
-        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
-        MonsterManager.instance.createMonsterById(1,this.player,this.bullet);
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(300, -300, 0));
+        //MonsterManager.instance.createMonsterById(2,this.player,this.bullet,v3(300, 200, 0));
+       
 
 
       

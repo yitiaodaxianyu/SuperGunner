@@ -16,6 +16,7 @@ import { Monster } from "../../monster/Monster";
 import { MonsterManager } from "../../monster/MonsterManager";
 import { EffectSingleCase } from "../../../../../extensions/oops-plugin-framework/assets/libs/animator-effect/EffectSingleCase";
 import { Bullet } from "../../bullet/Bullet";
+import { Vec3Util } from "../../../../../extensions/oops-plugin-framework/assets/core/utils/Vec3Util";
 
 const { ccclass, property } = _decorator;
 
@@ -23,7 +24,15 @@ const { ccclass, property } = _decorator;
 @ccclass('RoleViewController')
 export class RoleViewController extends Component {
     /** 角色对象 */
-    role: Role = null!;
+    private _role: Role = null!;
+
+    public set role(r: Role) {
+        this._role = r;
+        this.timer.step = this.role.RoleModel.attackSpeed;
+    }
+    public get role(): Role {
+        return this._role;
+    }
 
     moveDir: Vec3 = new Vec3(0, 1, 0);
     speedType: SpeedType = SpeedType.STOP;
@@ -34,7 +43,7 @@ export class RoleViewController extends Component {
     fastSpeed = 10;
     private timer: Timer = new Timer(1);
 
-   
+
     onLoad() {
         //oops.gui.game.on(Node.EventType.TOUCH_END, this.onTouchEnd, this);
         //this.timer.step=this.role.RoleModel.attackSpeed;
@@ -48,12 +57,15 @@ export class RoleViewController extends Component {
         if (this.speedType !== SpeedType.STOP) {
             this.move();
         }
-        let monstemp: Monster = MonsterManager.instance.getMonstersForCenterPos(500);
+        let monstemp: Monster = MonsterManager.instance.getMonstersForCenterPos(1000);
         if (monstemp != null && this.role != null) {
 
             this.attack(monstemp, dt);
 
         } else {
+            //随时更新攻击速度
+
+
             this.monsterDirection = 0;
         }
 
@@ -61,29 +73,29 @@ export class RoleViewController extends Component {
 
     private _monsterDirection: number = 0;//最近怪物朝向，0表示没有，1表示右边，-1表示左边
 
-    public  set monsterDirection(n:number){
-        if(n!=this._monsterDirection){
-            this._monsterDirection=n;
+    public set monsterDirection(n: number) {
+        if (n != this._monsterDirection) {
+            this._monsterDirection = n;
             this.role.RoleView.animator.changeAttackMode();
 
         }
-       
+
     }
-    public get monsterDirection():number{
+    public get monsterDirection(): number {
         return this._monsterDirection;
     }
     /** 攻击 */
     attack(monster: Monster, dt: number) {
 
-     
+
         if (this.role.RoleModel.isAllAniLoad == true && this.timer.update(dt)) {
-          
+
             if (monster.MonsterView.node.position.x - this.role.RoleView.node.position.x > 0) {
                 this.monsterDirection = 1;
             } else {
                 this.monsterDirection = -1;
             }
-            if (this.role.RoleView.animator.curStateName != RoleAnimatorType.Walk){
+            if (this.role.RoleView.animator.curStateName != RoleAnimatorType.Walk) {
                 if (this.monsterDirection == 1) {
                     this.role.RoleView.animator.left(0);
                 } else if (this.monsterDirection == -1) {
@@ -92,15 +104,27 @@ export class RoleViewController extends Component {
             }
             let node = EffectSingleCase.instance.show("bullet/bullet_1", this.role.bullet);
             node.active = true;
-            if (this.role.RoleView.animator.chaoxiang == 0) {
-                node.setPosition(new Vec3(this.role.RoleView.node.getPosition().x + 100, this.role.RoleView.node.getPosition().y + 73, 0));
-                node.getComponent(Bullet).setData(30, 0);
-            } else {
-                node.setPosition(new Vec3(this.role.RoleView.node.getPosition().x - 100, this.role.RoleView.node.getPosition().y + 73, 0));
-                node.getComponent(Bullet).setData(30, 180);
+
+
+
+            let endPos = monster.MonsterView.node.getPosition();
+            let startPos = Vec3Util.add(this.role.RoleView.node.getPosition().clone(), new Vec3(0, 83, 0));
+
+            let offsetPos = Vec3Util.sub(endPos, startPos);
+            let dir = Math.atan2(offsetPos.y, offsetPos.x);
+            dir = 180 * dir / Math.PI
+            if (dir > 180) {
+                dir = 180;
             }
-            
-           
+
+            if (dir < 0) {
+                dir = 0;
+            }
+            node.setPosition(new Vec3(startPos.x + Math.cos(dir * Math.PI / 180) * 100, startPos.y + Math.sin(dir * Math.PI / 180) * 100, 0));
+
+            node.getComponent(Bullet).setData(30, dir);
+            this.role.RoleView.animator.changeDir(dir);
+
         }
 
 

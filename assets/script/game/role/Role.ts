@@ -9,13 +9,11 @@ import { Node, Vec3 } from "cc";
 import { ViewUtil } from "../../../../extensions/oops-plugin-framework/assets/core/utils/ViewUtil";
 import { ecs } from "../../../../extensions/oops-plugin-framework/assets/libs/ecs/ECS";
 import { MoveToComp } from "../common/ecs/position/MoveTo";
-import { RoleChangeJobComp, RoleChangeJobSystem } from "./bll/RoleChangeJob";
-import { RoleUpgradeComp, RoleUpgradeSystem } from "./bll/RoleUpgrade";
+
 import { RoleAnimatorType } from "./model/RoleEnum";
 import { RoleModelBaseComp } from "./model/RoleModelBaseComp";
 import { RoleModelComp } from "./model/RoleModelComp";
-import { RoleModelJobComp } from "./model/RoleModelJobComp";
-import { RoleModelLevelComp } from "./model/RoleModelLevelComp";
+
 import { RoleViewComp } from "./view/RoleViewComp";
 import { RoleViewInfoComp } from "./view/RoleViewInfoComp";
 import { EffectSingleCase } from "../../../../extensions/oops-plugin-framework/assets/libs/animator-effect/EffectSingleCase";
@@ -35,12 +33,10 @@ export class Role extends ecs.Entity {
     // 数据层
     RoleModel!: RoleModelComp;
     RoleModelBase!: RoleModelBaseComp;          // 角色初始资质
-    RoleModelJob!: RoleModelJobComp;
-    RoleModelLevel!: RoleModelLevelComp;
 
-    // 业务层
-    RoleChangeJob!: RoleChangeJobComp;          // 转职
-    RoleUpgrade!: RoleUpgradeComp;              // 升级
+
+
+
     RoleMoveTo!: MoveToComp;                    // 移动
 
     // 视图层
@@ -54,22 +50,16 @@ export class Role extends ecs.Entity {
         // 初始化实体常住 ECS 组件，定义实体特性
         this.addComponents<ecs.Comp>(
             RoleModelComp,
-            RoleModelBaseComp,
-            RoleModelJobComp,
-            RoleModelLevelComp);
+            RoleModelBaseComp);
             
     }
 
-    /** 转职（ECS System处理逻辑，分享功能独立的业务代码） */
-    changeJob(jobId: number) {
-        var rcj = this.add(RoleChangeJobComp);
-        rcj.jobId = jobId;
-    }
+
 
     /** 角色升级（升级只修改数据，通过MVVM级件自动绑定等级变化后的界面角色生命属性刷新） */
     upgrade(lv: number = 0) {
-        var ru = this.add(RoleUpgradeComp);
-        ru.lv = lv;
+       
+      
     }
 
     /** 移动（ECS System处理逻辑，分享功能独立的业务代码）  */
@@ -107,7 +97,5 @@ export class EcsRoleSystem extends ecs.System {
     constructor() {
         super();
 
-        this.add(new RoleChangeJobSystem());
-        this.add(new RoleUpgradeSystem());
     }
 }

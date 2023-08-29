@@ -27,7 +27,7 @@ export class MonsterViewLoader extends Component {
     private onEmitLoad(monster: Monster) {
         this.spine = monster.MonsterView.spine;
         this.monster = monster;
-        this.load(monster.MonsterModel.anim);
+        // this.load(monster.MonsterModel.anim);
     }
 
     private load(name: string) {

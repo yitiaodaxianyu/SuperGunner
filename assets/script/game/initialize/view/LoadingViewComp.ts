@@ -10,8 +10,8 @@ import { ecs } from "../../../../../extensions/oops-plugin-framework/assets/libs
 import { CCVMParentComp } from "../../../../../extensions/oops-plugin-framework/assets/module/common/CCVMParentComp";
 import { UIID } from "../../common/config/GameUIConfig";
 import { JsonUtil } from "../../../../../extensions/oops-plugin-framework/assets/core/utils/JsonUtil";
-import { TableRoleJob } from "../../common/table/TableRoleJob";
-import { TableRoleLevelUp } from "../../common/table/TableRoleLevelUp";
+import { TableMonsterConfig } from "../../common/table/TableMonsterConfig";
+
 
 const { ccclass, property } = _decorator;
 
@@ -64,8 +64,8 @@ export class LoadingViewComp extends CCVMParentComp {
         // 加载游戏本地JSON数据的多语言提示文本
         this.data.prompt = oops.language.getLangByID("loading_load_json");
         return new Promise(async (resolve, reject) => {
-            await JsonUtil.loadAsync(TableRoleJob.TableName);
-            await JsonUtil.loadAsync(TableRoleLevelUp.TableName);
+            await JsonUtil.loadAsync(TableMonsterConfig.TableName);
+           
             resolve(null);
         });
     }

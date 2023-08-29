@@ -1,5 +1,6 @@
 import { ecs } from "../../../../../extensions/oops-plugin-framework/assets/libs/ecs/ECS";
 import { VM } from "../../../../../extensions/oops-plugin-framework/assets/libs/model-view/ViewModel";
+import { TableMonsterConfig } from "../../common/table/TableMonsterConfig";
 import { MonsterData } from "./MonsterData";
 
 /** 数据层对象 */
@@ -7,7 +8,9 @@ import { MonsterData } from "./MonsterData";
 export class MonsterModelComp extends ecs.Comp {
 
     /** 角色编号 */
-    id: number = -1;
+    private _id: number = -1;
+
+    private table: TableMonsterConfig = new TableMonsterConfig();
 
     private _name: string = "";
     /** 昵称 */
@@ -17,6 +20,17 @@ export class MonsterModelComp extends ecs.Comp {
     set name(value: string) {
         this._name = value;
         this.vm.name = value;
+    }
+
+     /** 昵称 */
+    get id(): number {
+        return this._id;
+    }
+    set id(value: number) {
+        //读取json配置
+        this.table.init(value);
+        this._id = value;
+       
     }
 
     monsterData:MonsterData=new MonsterData();
