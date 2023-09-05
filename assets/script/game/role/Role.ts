@@ -46,6 +46,7 @@ export class Role extends ecs.Entity {
 
     bullet: Node = null!;
 
+
     protected init() {
         // 初始化实体常住 ECS 组件，定义实体特性
         this.addComponents<ecs.Comp>(
@@ -87,6 +88,7 @@ export class Role extends ecs.Entity {
         node.setPosition(pos);
 
         await EffectSingleCase.instance.loadAndShow("bullet/bullet_1");
+     
         this.RoleModel.isAllAniLoad = true;
     }
 

@@ -5,12 +5,12 @@
  * @LastEditTime: 2022-07-25 17:03:54
  */
 
-import { v3 } from "cc";
+
 import { oops } from "../../../../../extensions/oops-plugin-framework/assets/core/Oops";
 import { ecs } from "../../../../../extensions/oops-plugin-framework/assets/libs/ecs/ECS";
 import { GameEvent } from "../../common/config/GameEvent";
 
-import { Role } from "../../role/Role";
+
 import { Account } from "../Account";
 import { AccountModelComp } from "../model/AccountModelComp";
 

@@ -1,47 +1,103 @@
 
 rolebody.png
-size: 1383,381
+size: 1737,381
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+jiqiang_001
+  rotate: true
+  xy: 1560, 165
+  size: 214, 163
+  orig: 214, 163
+  offset: 0, 0
+  index: -1
+jiqiang_001 - 2
+  rotate: true
+  xy: 1560, 165
+  size: 214, 163
+  orig: 214, 163
+  offset: 0, 0
+  index: -1
+jiqiang_002
+  rotate: false
+  xy: 1449, 18
+  size: 152, 145
+  orig: 214, 163
+  offset: 60, 11
+  index: -1
+jiqiang_002 - 2
+  rotate: false
+  xy: 1449, 18
+  size: 152, 145
+  orig: 214, 163
+  offset: 60, 11
+  index: -1
+jiqiang_003
+  rotate: false
+  xy: 1233, 40
+  size: 214, 154
+  orig: 214, 163
+  offset: 0, 9
+  index: -1
+jiqiang_003 - 2
+  rotate: false
+  xy: 1233, 40
+  size: 214, 154
+  orig: 214, 163
+  offset: 0, 9
+  index: -1
+jiqiang_004 - 2
+  rotate: true
+  xy: 1603, 7
+  size: 156, 132
+  orig: 214, 163
+  offset: 58, 25
+  index: -1
+jiqiang_004
+  rotate: true
+  xy: 1603, 7
+  size: 156, 132
+  orig: 214, 163
+  offset: 58, 25
+  index: -1
 zhujue0
   rotate: true
-  xy: 554, 2
+  xy: 2, 2
   size: 377, 411
   orig: 377, 411
   offset: 0, 0
   index: -1
 zhujue1
-  rotate: true
-  xy: 1178, 124
+  rotate: false
+  xy: 967, 45
   size: 255, 123
   orig: 255, 123
   offset: 0, 0
   index: -1
 zhujue10
   rotate: true
-  xy: 967, 10
+  xy: 1233, 276
   size: 103, 325
   orig: 103, 325
   offset: 0, 0
   index: -1
 zhujue11
   rotate: true
-  xy: 2, 21
+  xy: 415, 21
   size: 358, 550
   orig: 358, 550
   offset: 0, 0
   index: -1
 zhujue16
-  rotate: false
-  xy: 1303, 85
+  rotate: true
+  xy: 1233, 196
   size: 78, 294
   orig: 79, 294
   offset: 1, 0
   index: -1
 zhujue8
-  rotate: true
-  xy: 967, 115
+  rotate: false
+  xy: 967, 170
   size: 264, 209
   orig: 264, 209
   offset: 0, 0

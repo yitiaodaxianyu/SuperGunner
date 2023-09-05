@@ -1,4 +1,4 @@
-import { _decorator, Collider2D, Component, Contact2DType, EventTouch, instantiate, IPhysics2DContact, log, Node, PhysicsSystem2D, Prefab, RigidBody2D, v3, Vec2, Vec3 } from 'cc';
+import { _decorator, BoxCollider2D, Collider2D, Component, Contact2DType, EventTouch, instantiate, IPhysics2DContact, log, Node, PhysicsSystem2D, Prefab, RigidBody2D, v3, Vec2, Vec3 } from 'cc';
 import { oops } from '../../../../../extensions/oops-plugin-framework/assets/core/Oops';
 import { UIID } from '../../common/config/GameUIConfig';
 import { GameEvent } from '../../common/config/GameEvent';
@@ -29,6 +29,18 @@ export class GameView extends Component {
     //子弹层级
     @property({ type: Node })
     bullet: Node = null!;
+
+    //第一背景
+    @property({ type: Node })
+    bg0: Node = null!;
+
+    //第二背景
+    @property({ type: Node })
+    bg1: Node = null!;
+
+    //地面
+    @property({ type: Node })
+    wall: Node = null!;
 
 
     private boxNum: number = 0;
@@ -82,29 +94,47 @@ export class GameView extends Component {
 
         role.bullet = this.bullet;
 
+
         // 角色动画显示对象
-        role.load(this.player, v3(0, -300, 0));
+        role.load(this.player, v3(0, -150, 0));
 
         smc.account.AccountModel.role = role;
-        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(300, -300, 0));
-        //MonsterManager.instance.createMonsterById(2,this.player,this.bullet,v3(300, 200, 0));
-       
+        //MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(300, -150, 0));
+        MonsterManager.instance.createMonsterById(2, this.player, this.bullet, v3(300, 200, 0));
 
 
-      
+
+
     }
     update(deltaTime: number) {
 
         if (smc.account.AccountModel.role.RoleView) {
-            this.body.setPosition(new Vec3(-smc.account.AccountModel.role.RoleView.node.getPosition().x, -smc.account.AccountModel.role.RoleView.node.getPosition().y - 300, 0));
+            this.body.setPosition(new Vec3(-smc.account.AccountModel.role.RoleView.node.getPosition().x, 0, 0));
+            //log(smc.account.AccountModel.role.RoleView.node.getPosition().x);
+            if (Math.abs(this.bg1.getPosition().x - smc.account.AccountModel.role.RoleView.node.getPosition().x) > 1705) {
+                if (this.bg1.getPosition().x - smc.account.AccountModel.role.RoleView.node.getPosition().x > 0) {
+                    this.bg1.setPosition(new Vec3(this.bg0.getPosition().x - 1705, this.bg0.getPosition().y, 0));
+                } else {
+                    this.bg1.setPosition(new Vec3(this.bg0.getPosition().x + 1705, this.bg0.getPosition().y, 0));
+                }
+            }
+
+            if (Math.abs(this.bg0.getPosition().x - smc.account.AccountModel.role.RoleView.node.getPosition().x) > 1705) {
+                if (this.bg0.getPosition().x - smc.account.AccountModel.role.RoleView.node.getPosition().x > 0) {
+                    this.bg0.setPosition(new Vec3(this.bg1.getPosition().x - 1705, this.bg1.getPosition().y, 0));
+                } else {
+                    this.bg0.setPosition(new Vec3(this.bg1.getPosition().x + 1705, this.bg1.getPosition().y, 0));
+                }
+            }
+           
         }
 
     }
     protected onDestroy(): void {
-        
+
     }
 
- 
+
     onToRoom(): void {
 
         oops.gui.open(UIID.Room);

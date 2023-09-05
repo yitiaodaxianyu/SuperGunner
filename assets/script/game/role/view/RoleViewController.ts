@@ -17,6 +17,7 @@ import { MonsterManager } from "../../monster/MonsterManager";
 import { EffectSingleCase } from "../../../../../extensions/oops-plugin-framework/assets/libs/animator-effect/EffectSingleCase";
 import { Bullet } from "../../bullet/Bullet";
 import { Vec3Util } from "../../../../../extensions/oops-plugin-framework/assets/core/utils/Vec3Util";
+import { EffectComponent } from "../../effects/EffectComponent";
 
 const { ccclass, property } = _decorator;
 
@@ -102,27 +103,37 @@ export class RoleViewController extends Component {
                     this.role.RoleView.animator.right(0);
                 }
             }
-            let node = EffectSingleCase.instance.show("bullet/bullet_1", this.role.bullet);
-            node.active = true;
-
-
-
-            let endPos = monster.MonsterView.node.getPosition();
-            let startPos = Vec3Util.add(this.role.RoleView.node.getPosition().clone(), new Vec3(0, 83, 0));
-
-            let offsetPos = Vec3Util.sub(endPos, startPos);
-            let dir = Math.atan2(offsetPos.y, offsetPos.x);
-            dir = 180 * dir / Math.PI
-            if (dir > 180) {
-                dir = 180;
+            var dir=0;
+            for(var i:number=0;i<2;i++){
+                let node = EffectSingleCase.instance.show("bullet/bullet_1", this.role.bullet);
+                node.active = true;
+    
+    
+    
+                let endPos = monster.MonsterView.node.getPosition();
+                let startPos = Vec3Util.add(this.role.RoleView.node.getPosition().clone(), new Vec3(10*i, 83, 0));
+    
+                let offsetPos = Vec3Util.sub(endPos, startPos);
+                dir = Math.atan2(offsetPos.y, offsetPos.x);
+                dir = 180 * dir / Math.PI
+                if (dir > 180) {
+                    dir = 180;
+                }
+    
+                if (dir < 0) {
+                    dir = 0;
+                }
+                node.setPosition(new Vec3(startPos.x + Math.cos(dir * Math.PI / 180) * 100, startPos.y + Math.sin(dir * Math.PI / 180) * 100, 0));
+    
+                node.getComponent(Bullet).setData(30, dir);
             }
+          
+            
+            // let effect = EffectSingleCase.instance.show("effects/jiqiang", this.role.bullet);
+            // effect.active = true;
+            // effect.setPosition(node.getPosition());
+            // effect.getComponent(EffectComponent).setData(dir);
 
-            if (dir < 0) {
-                dir = 0;
-            }
-            node.setPosition(new Vec3(startPos.x + Math.cos(dir * Math.PI / 180) * 100, startPos.y + Math.sin(dir * Math.PI / 180) * 100, 0));
-
-            node.getComponent(Bullet).setData(30, dir);
             this.role.RoleView.animator.changeDir(dir);
 
         }

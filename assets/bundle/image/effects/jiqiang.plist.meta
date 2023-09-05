@@ -1,0 +1,201 @@
+{
+  "ver": "1.0.8",
+  "importer": "sprite-atlas",
+  "imported": true,
+  "uuid": "21fd038d-339f-4a4a-9eab-5051553b8c2d",
+  "files": [
+    ".json"
+  ],
+  "subMetas": {
+    "82598": {
+      "importer": "sprite-frame",
+      "uuid": "21fd038d-339f-4a4a-9eab-5051553b8c2d@82598",
+      "displayName": "",
+      "id": "82598",
+      "name": "jiqiang_003",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 2,
+        "trimY": 2,
+        "width": 214,
+        "height": 163,
+        "rawWidth": 214,
+        "rawHeight": 163,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "499127df-3d3c-4178-b1ca-3322680af7b2@6c48a",
+        "atlasUuid": "21fd038d-339f-4a4a-9eab-5051553b8c2d"
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "e2d29": {
+      "importer": "sprite-frame",
+      "uuid": "21fd038d-339f-4a4a-9eab-5051553b8c2d@e2d29",
+      "displayName": "",
+      "id": "e2d29",
+      "name": "jiqiang_001",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 218,
+        "trimY": 2,
+        "width": 214,
+        "height": 163,
+        "rawWidth": 214,
+        "rawHeight": 163,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "499127df-3d3c-4178-b1ca-3322680af7b2@6c48a",
+        "atlasUuid": "21fd038d-339f-4a4a-9eab-5051553b8c2d"
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "78a95": {
+      "importer": "sprite-frame",
+      "uuid": "21fd038d-339f-4a4a-9eab-5051553b8c2d@78a95",
+      "displayName": "",
+      "id": "78a95",
+      "name": "jiqiang_002",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": true,
+        "offsetX": 24,
+        "offsetY": 3,
+        "trimX": 2,
+        "trimY": 167,
+        "width": 166,
+        "height": 153,
+        "rawWidth": 214,
+        "rawHeight": 163,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "499127df-3d3c-4178-b1ca-3322680af7b2@6c48a",
+        "atlasUuid": "21fd038d-339f-4a4a-9eab-5051553b8c2d"
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "7a301": {
+      "importer": "sprite-frame",
+      "uuid": "21fd038d-339f-4a4a-9eab-5051553b8c2d@7a301",
+      "displayName": "",
+      "id": "7a301",
+      "name": "jiqiang_004",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": true,
+        "offsetX": 27,
+        "offsetY": 10,
+        "trimX": 2,
+        "trimY": 335,
+        "width": 160,
+        "height": 137,
+        "rawWidth": 214,
+        "rawHeight": 163,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "pixelsToUnit": 100,
+        "pivotX": 0.5,
+        "pivotY": 0.5,
+        "meshType": 0,
+        "vertices": {
+          "rawPosition": [],
+          "indexes": [],
+          "uv": [],
+          "nuv": [],
+          "minPos": [],
+          "maxPos": []
+        },
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "499127df-3d3c-4178-b1ca-3322680af7b2@6c48a",
+        "atlasUuid": "21fd038d-339f-4a4a-9eab-5051553b8c2d"
+      },
+      "ver": "1.0.11",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "atlasTextureName": "jiqiang.png",
+    "format": 2,
+    "uuid": "21fd038d-339f-4a4a-9eab-5051553b8c2d",
+    "textureUuid": "499127df-3d3c-4178-b1ca-3322680af7b2@6c48a"
+  }
+}

@@ -7,7 +7,7 @@ export class MonsterData {
     /** 攻击方式 0近战 1远程*/
     public attackMode = 0;
     /** 攻击距离 */
-    public attackDistance = 400;
+    public attackDistance = 100;
     /** 防御力 */
     public defensive = 0;
      /** 攻击速度 */

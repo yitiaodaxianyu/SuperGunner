@@ -50,14 +50,20 @@ export class MonsterManager {
 
         var monstemp: Monster = null;
         var tempDis: number = 999999;
-        for (var i: number = 0; i < this.allMonster.length; i++) {
-            var tempMonster: Monster = this.allMonster[i];
-            var disTemp=Vec3Util.distance(tempMonster.MonsterView.node.position,smc.account.AccountModel.role.RoleView.node.position);
-            if(disTemp<distance&&disTemp<tempDis){
-                tempDis=disTemp;
-                monstemp=tempMonster;
+        if(smc.account.AccountModel.role.RoleView.node){
+            for (var i: number = 0; i < this.allMonster.length; i++) {
+                var tempMonster: Monster = this.allMonster[i];
+                var disTemp=999999;
+                if(tempMonster.MonsterView){
+                    disTemp=Vec3Util.distance(tempMonster.MonsterView.node.position,smc.account.AccountModel.role.RoleView.node.position);
+                }
+                if(disTemp<distance&&disTemp<tempDis){
+                    tempDis=disTemp;
+                    monstemp=tempMonster;
+                }
             }
         }
+        
 
         return monstemp;
     }

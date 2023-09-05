@@ -4,15 +4,16 @@
  * @LastEditors: dgflash
  * @LastEditTime: 2022-06-14 19:56:45
  */
-import { sp, _decorator, log } from "cc";
+import { sp, _decorator, log, Vec3, Node } from "cc";
 import AnimatorSpine from "../../../../../extensions/oops-plugin-framework/assets/libs/animator/AnimatorSpine";
 import { AnimatorStateLogic } from "../../../../../extensions/oops-plugin-framework/assets/libs/animator/core/AnimatorStateLogic";
-import { RoleAnimatorType, WeaponName } from "../model/RoleEnum";
+import { RoleAnimatorType } from "../model/RoleEnum";
 import { Role } from "../Role";
 import { AnimationEventHandler } from "./animator/AnimationEventHandler";
 import { RoleStateAttack } from "./animator/RoleStateAttack";
 import { RoleStateDead } from "./animator/RoleStateDead";
 import { RoleStateHit } from "./animator/RoleStateHit";
+import { Vec3Util } from "../../../../../extensions/oops-plugin-framework/assets/core/utils/Vec3Util";
 
 const { ccclass, property, requireComponent, disallowMultiple } = _decorator;
 
@@ -32,6 +33,10 @@ export class RoleViewAnimator extends AnimatorSpine {
     @property({ type: sp.Skeleton, tooltip: '角色上身' })
     spineBody: sp.Skeleton = null!;
 
+
+
+
+
     @property({ type: sp.Skeleton, tooltip: '角色披风' })
     spinePifeng: sp.Skeleton = null!;
 
@@ -42,8 +47,7 @@ export class RoleViewAnimator extends AnimatorSpine {
     /** 角色对象 */
     role: Role = null!;
 
-    /** 武器动画名 */
-    private weaponAnimName: string = null!;
+
 
     //朝向
     public chaoxiang: number = 0;
@@ -73,6 +77,8 @@ export class RoleViewAnimator extends AnimatorSpine {
     private get direction(): number {
         return this._direction;
     }
+
+   
     /** 面象朝左 */
     left(direction: number) {
         if (direction > 0) {
