@@ -113,12 +113,14 @@ export class MonsterViewController extends Component {
             //const force = new Vec2(moveVec.x, moveVec.y);
             let force
             if (moveVec > 0) {
-                force = new Vec2(this.moveSpeed, 0);
+                force = new Vec3(this.moveSpeed, 0,0);
             } else {
-                force = new Vec2(-this.moveSpeed, 0);
+                force = new Vec3(-this.moveSpeed, 0,0);
             }
 
-            this.monster.MonsterView.node.getComponent(RigidBody2D).linearVelocity = force;
+            // this.monster.MonsterView.node.getComponent(RigidBody2D).linearVelocity = force;
+
+            this.monster.MonsterView.node.translate(force, Node.NodeSpace.LOCAL);
             //this.role.RoleView.node.getComponent(RigidBody2D).applyForceToCenter(force, true);
             if (moveVec > 0)
                 this.monster.MonsterView.animator.left();

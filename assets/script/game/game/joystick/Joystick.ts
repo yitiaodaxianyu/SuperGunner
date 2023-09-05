@@ -105,7 +105,7 @@ export class Joystick extends Component {
     displayName: "Ring Radius",
     tooltip: "半径",
   })
-  radius = 50;
+  radius = 66;
 
   onLoad() {
     if (!this.dot) {
@@ -122,16 +122,16 @@ export class Joystick extends Component {
     const size = this.radius * 2;
     const ringSize = new Size(size, size);
     uiTransform?.setContentSize(ringSize);
-    this.ring
-      .getChildByName("bg")!
-      .getComponent(UITransform)
-      ?.setContentSize(ringSize);
+    // this.ring
+    //   .getChildByName("bg")!
+    //   .getComponent(UITransform)
+    //   ?.setContentSize(ringSize);
 
     this._initTouchEvent();
     // hide joystick when follow
     const uiOpacity = this.node.getComponent(UIOpacity);
     if (this.joystickType === JoystickType.FOLLOW && uiOpacity) {
-      uiOpacity.opacity = 0;
+      //uiOpacity.opacity = 0;
     }
   }
 
@@ -157,7 +157,7 @@ export class Joystick extends Component {
     this.joystickType = type;
     const uiOpacity = this.node.getComponent(UIOpacity);
     if (uiOpacity) {
-      uiOpacity.opacity = type === JoystickType.FIXED ? 255 : 0;
+      //uiOpacity.opacity = type === JoystickType.FIXED ? 255 : 0;
     }
   }
 
@@ -199,7 +199,7 @@ export class Joystick extends Component {
     } else if (this.joystickType === JoystickType.FOLLOW) {
       // 记录摇杆位置，给 touch move 使用
       this._stickPos = touchPos;
-      this.node.getComponent(UIOpacity)!.opacity = 255;
+      //this.node.getComponent(UIOpacity)!.opacity = 255;
       this._touchLocation = event.getUILocation();
       // 更改摇杆的位置
       this.ring.setPosition(touchPos);
@@ -253,8 +253,9 @@ export class Joystick extends Component {
     if (!this.dot || !this.ring) return;
 
     this.dot.setPosition(new Vec3());
+    this.ring.setPosition(new Vec3(383.254,191.84));
     if (this.joystickType === JoystickType.FOLLOW) {
-      this.node.getComponent(UIOpacity)!.opacity = 0;
+      //this.node.getComponent(UIOpacity)!.opacity = 0;
     }
 
     instance.emit(Node.EventType.TOUCH_END, event, {

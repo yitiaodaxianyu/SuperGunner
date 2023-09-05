@@ -40,8 +40,8 @@ export class RoleViewController extends Component {
     moveSpeed = 0;
 
     stopSpeed = 0;
-    normalSpeed = 5;
-    fastSpeed = 10;
+    normalSpeed = 3;
+    fastSpeed = 4;
     private timer: Timer = new Timer(1);
 
 
@@ -103,32 +103,33 @@ export class RoleViewController extends Component {
                     this.role.RoleView.animator.right(0);
                 }
             }
-            var dir=0;
-            for(var i:number=0;i<2;i++){
+            var dir = 0;
+            for (var i: number = 0; i < 2; i++) {
                 let node = EffectSingleCase.instance.show("bullet/bullet_1", this.role.bullet);
                 node.active = true;
-    
-    
-    
+
+
+
                 let endPos = monster.MonsterView.node.getPosition();
-                let startPos = Vec3Util.add(this.role.RoleView.node.getPosition().clone(), new Vec3(10*i, 83, 0));
-    
+                let startPos = Vec3Util.add(this.role.RoleView.node.getPosition().clone(), new Vec3(i*10, 62, 0));
+
                 let offsetPos = Vec3Util.sub(endPos, startPos);
                 dir = Math.atan2(offsetPos.y, offsetPos.x);
                 dir = 180 * dir / Math.PI
-                if (dir > 180) {
+
+                var xiangXian: number = (dir + 360) % 360;
+                if (xiangXian > 180 && xiangXian < 270) {
                     dir = 180;
-                }
-    
-                if (dir < 0) {
+                } else if (xiangXian >= 270 && xiangXian < 360) {
                     dir = 0;
                 }
-                node.setPosition(new Vec3(startPos.x + Math.cos(dir * Math.PI / 180) * 100, startPos.y + Math.sin(dir * Math.PI / 180) * 100, 0));
-    
-                node.getComponent(Bullet).setData(30, dir);
+                
+                node.setPosition(new Vec3(startPos.x + Math.cos(dir * Math.PI / 180) * 75, startPos.y + Math.sin(dir * Math.PI / 180) * 75, 0));
+
+                node.getComponent(Bullet).setData(300, dir);
             }
-          
-            
+
+
             // let effect = EffectSingleCase.instance.show("effects/jiqiang", this.role.bullet);
             // effect.active = true;
             // effect.setPosition(node.getPosition());
@@ -155,7 +156,7 @@ export class RoleViewController extends Component {
         this.speedType = data.speedType;
 
         this.onSetMoveSpeed(this.speedType);
-        this.role.RoleView.node.getComponent(RigidBody2D).linearVelocity = new Vec2(0, 0);
+        // this.role.RoleView.node.getComponent(RigidBody2D).linearVelocity = new Vec2(0, 0);
     }
     /**
 * set moveSpeed by SpeedType
@@ -192,9 +193,10 @@ export class RoleViewController extends Component {
     move() {
         const moveVec = this.moveDir.clone().multiplyScalar(this.moveSpeed);
         //const force = new Vec2(moveVec.x, moveVec.y);
-        const force = new Vec2(moveVec.x, 0);
-        this.role.RoleView.node.getComponent(RigidBody2D).linearVelocity = force;
+        const force = new Vec3(moveVec.x, 0, 0);
+        //this.role.RoleView.node.getComponent(RigidBody2D).linearVelocity = force;
         //this.role.RoleView.node.getComponent(RigidBody2D).applyForceToCenter(force, true);
+        this.role.RoleView.node.translate(force, Node.NodeSpace.LOCAL);
 
         if (this.monsterDirection == 1) {
             this.role.RoleView.animator.left(moveVec.x);

@@ -99,8 +99,39 @@ export class GameView extends Component {
         role.load(this.player, v3(0, -150, 0));
 
         smc.account.AccountModel.role = role;
-        //MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(300, -150, 0));
-        MonsterManager.instance.createMonsterById(2, this.player, this.bullet, v3(300, 200, 0));
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(-300, -150, 0));
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(-300, -150, 0));
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(-300, -150, 0));
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(-300, -150, 0));
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(-300, -150, 0));
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(-300, -150, 0));
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(-300, -150, 0));
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(-300, -150, 0));
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(-300, -150, 0));
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(-300, -150, 0));
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(300, -150, 0));
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(300, -150, 0));
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(300, -150, 0));
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(300, -150, 0));
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(300, -150, 0));
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(300, -150, 0));
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(300, -150, 0));
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(300, -150, 0));
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(300, -150, 0));
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(300, -150, 0));
+        MonsterManager.instance.createMonsterById(1,this.player,this.bullet,v3(300, -150, 0));
+        //MonsterManager.instance.createMonsterById(2, this.player, this.bullet, v3(300, 200, 0));
+        // MonsterManager.instance.createMonsterById(2, this.player, this.bullet, v3(300, 200, 0));
+        // MonsterManager.instance.createMonsterById(2, this.player, this.bullet, v3(300, 200, 0));
+        // MonsterManager.instance.createMonsterById(2, this.player, this.bullet, v3(300, 200, 0));
+        // MonsterManager.instance.createMonsterById(2, this.player, this.bullet, v3(300, 200, 0));
+        // MonsterManager.instance.createMonsterById(2, this.player, this.bullet, v3(300, 200, 0));
+        // MonsterManager.instance.createMonsterById(2, this.player, this.bullet, v3(300, 200, 0));
+        // MonsterManager.instance.createMonsterById(2, this.player, this.bullet, v3(300, 200, 0));
+        // MonsterManager.instance.createMonsterById(2, this.player, this.bullet, v3(300, 200, 0));
+        // MonsterManager.instance.createMonsterById(2, this.player, this.bullet, v3(300, 200, 0));
+        // MonsterManager.instance.createMonsterById(2, this.player, this.bullet, v3(300, 200, 0));
+        // MonsterManager.instance.createMonsterById(2, this.player, this.bullet, v3(300, 200, 0));
 
 
 
