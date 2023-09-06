@@ -78,7 +78,7 @@ export class RoleViewAnimator extends AnimatorSpine {
         return this._direction;
     }
 
-   
+
     /** 面象朝左 */
     left(direction: number) {
         if (direction > 0) {
@@ -115,28 +115,39 @@ export class RoleViewAnimator extends AnimatorSpine {
         // 状态机状态值未变时，不会触发状态变化事件，所以这里直接触发状态变化事件来触发后续流程
         this.onStateChange(this._ac.curState, this._ac.curState);
     }
- 
+
     //改变枪的旋转角度
-    public changeDir(dir:number):void{
-      
-        let L_Arm=this.spineBody.findBone("L_UpArm");
-        let R_Arm=this.spineBody.findBone("R_UpArm");
-        if (this.chaoxiang == 1) {
-            L_Arm.data.rotation = 330-dir;
-            R_Arm.data.rotation = -15-dir;
-           
-        }else{
-            L_Arm.data.rotation = 330-(180-dir);
-            R_Arm.data.rotation = -15-(180-dir);
+    public changeDir(dir: number): void {
+        if (this.role.RoleModel.weaponType == 0) {
+            let L_Arm = this.spineBody.findBone("L_UpArm");
+            let R_Arm = this.spineBody.findBone("R_UpArm");
+            if (this.chaoxiang == 1) {
+                L_Arm.data.rotation = 330 - dir;
+                R_Arm.data.rotation = -15 - dir;
+
+            } else {
+                L_Arm.data.rotation = 330 - (180 - dir);
+                R_Arm.data.rotation = -15 - (180 - dir);
+            }
+
+        } else {
+            let zhujue5 = this.spineBody.findBone("zhujue5");
+
+            if (this.chaoxiang == 1) {
+                zhujue5.data.rotation = 330 - dir;
+            } else {
+                zhujue5.data.rotation = 330 - (180 - dir);
+            }
+
         }
-        if(dir==0||dir==180){
-            let chest=this.spineBody.findBone("head");
+        if (dir == 0 || dir == 180) {
+            let chest = this.spineBody.findBone("head");
             chest.data.rotation = -27.16;
-        }else{
-            let chest=this.spineBody.findBone("head");
-            chest.data.rotation = -27.16+30;
+        } else {
+            let chest = this.spineBody.findBone("head");
+            chest.data.rotation = -27.16 + 30;
         }
-       
+
     }
     //攻击状态改变
     public changeAttackMode(): void {
@@ -147,28 +158,45 @@ export class RoleViewAnimator extends AnimatorSpine {
                 this.spinePifeng.setAnimation(0, "move", true);
                 this.spineBody.timeScale = 1;
                 this.spinePifeng.timeScale = 1;
-                let chest=this.spineBody.findBone("head");
+                let chest = this.spineBody.findBone("head");
                 chest.data.rotation = -27.16;
             } else {
                 var temp1 = this.spineBody.setAnimation(0, "atk2", true);
-                var temp2 = this.spinePifeng.setAnimation(0, "atk2", true);
-                this.spineBody.timeScale = temp1.animationEnd / this.role.RoleModel.attackSpeed;
-                this.spinePifeng.timeScale = temp2.animationEnd / this.role.RoleModel.attackSpeed;
+                if (this.role.RoleModel.weaponType == 0) {
+                    var temp2 = this.spinePifeng.setAnimation(0, "atk2", true);
+                    this.spineBody.timeScale = temp1.animationEnd / this.role.RoleModel.attackSpeed;
+                    this.spinePifeng.timeScale = temp2.animationEnd / this.role.RoleModel.attackSpeed;
+                } else {
+
+                    var temp2 = this.spinePifeng.setAnimation(0, "atk-changqiang", true);
+                    this.spineBody.timeScale = 1;
+                    this.spinePifeng.timeScale = 1;
+                }
+
+
 
             }
         } else {
             if (this.role.RoleView.controller.monsterDirection == 0) {
                 this.spineBody.setAnimation(0, "idle", true);
                 this.spinePifeng.setAnimation(0, "idle", true);
-                let chest=this.spineBody.findBone("head");
+                let chest = this.spineBody.findBone("head");
                 chest.data.rotation = -27.16;
                 this.spineBody.timeScale = 1;
                 this.spinePifeng.timeScale = 1;
             } else {
                 var temp1 = this.spineBody.setAnimation(0, "atk2", true);
-                var temp2 = this.spinePifeng.setAnimation(0, "atk2", true);
-                this.spineBody.timeScale = temp1.animationEnd / this.role.RoleModel.attackSpeed;
-                this.spinePifeng.timeScale = temp2.animationEnd / this.role.RoleModel.attackSpeed;
+                if (this.role.RoleModel.weaponType == 0) {
+                    var temp2 = this.spinePifeng.setAnimation(0, "atk2", true);
+                    this.spineBody.timeScale = temp1.animationEnd / this.role.RoleModel.attackSpeed;
+                    this.spinePifeng.timeScale = temp2.animationEnd / this.role.RoleModel.attackSpeed;
+                } else {
+
+                    var temp2 = this.spinePifeng.setAnimation(0, "atk-changqiang", true);
+                    this.spineBody.timeScale = 1;
+                    this.spinePifeng.timeScale = 1;
+                }
+
             }
         }
 
@@ -219,5 +247,5 @@ export class RoleViewAnimator extends AnimatorSpine {
         }
     }
 
-   
+
 }

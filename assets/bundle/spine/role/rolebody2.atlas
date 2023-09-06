@@ -1,0 +1,90 @@
+
+rolebody2.png
+size: 734,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiqiang_001
+  rotate: true
+  xy: 554, 556
+  size: 214, 163
+  orig: 214, 163
+  offset: 0, 0
+  index: -1
+jiqiang_002
+  rotate: false
+  xy: 381, 52
+  size: 152, 145
+  orig: 214, 163
+  offset: 60, 11
+  index: -1
+jiqiang_003
+  rotate: true
+  xy: 381, 199
+  size: 214, 154
+  orig: 214, 163
+  offset: 0, 9
+  index: -1
+jiqiang_004
+  rotate: false
+  xy: 554, 320
+  size: 156, 132
+  orig: 214, 163
+  offset: 58, 25
+  index: -1
+zhujue0
+  rotate: false
+  xy: 2, 2
+  size: 377, 411
+  orig: 377, 411
+  offset: 0, 0
+  index: -1
+zhujue1
+  rotate: true
+  xy: 537, 2
+  size: 255, 123
+  orig: 255, 123
+  offset: 0, 0
+  index: -1
+zhujue11
+  rotate: true
+  xy: 2, 415
+  size: 358, 550
+  orig: 358, 550
+  offset: 0, 0
+  index: -1
+zhujue2
+  rotate: true
+  xy: 639, 772
+  size: 49, 61
+  orig: 51, 64
+  offset: 1, 1
+  index: -1
+zhujue3
+  rotate: false
+  xy: 554, 454
+  size: 163, 100
+  orig: 165, 104
+  offset: 1, 3
+  index: -1
+zhujue4
+  rotate: false
+  xy: 2, 775
+  size: 635, 247
+  orig: 637, 249
+  offset: 1, 1
+  index: -1
+zhujue5
+  rotate: false
+  xy: 639, 823
+  size: 93, 199
+  orig: 96, 201
+  offset: 1, 1
+  index: -1
+zhujue6
+  rotate: true
+  xy: 537, 259
+  size: 59, 194
+  orig: 61, 196
+  offset: 1, 1
+  index: -1

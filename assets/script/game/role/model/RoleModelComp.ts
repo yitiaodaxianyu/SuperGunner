@@ -28,7 +28,9 @@ export class RoleModelComp extends ecs.Comp {
 
     private _name: string = "";
 
-    public attackSpeed:number=0.5;
+    public attackSpeed: number = 0.1;
+
+    public weaponType: number = 1;
     /** 昵称 */
     get name(): string {
         return this._name;
@@ -44,7 +46,7 @@ export class RoleModelComp extends ecs.Comp {
     /** 角色属性 */
     attributes: RoleNumericMap = null!;
     //是否所有子弹资源加载完毕
-    isAllAniLoad:boolean=false;
+    isAllAniLoad: boolean = false;
 
     constructor() {
         super();

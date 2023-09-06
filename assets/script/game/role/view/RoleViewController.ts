@@ -104,14 +104,29 @@ export class RoleViewController extends Component {
                 }
             }
             var dir=0;
-            for(var i:number=0;i<2;i++){
+            var weaponNum:number=2;
+
+            var gunHeight:number=54;//基础高度
+            var gunWidth:number=65;//枪长
+            var gunD:number=0;//偏移量
+            if(this.role.RoleModel.weaponType==1){
+                weaponNum=1;
+                gunHeight=48;
+                gunWidth=80;
+                if(this.role.RoleView.animator.chaoxiang==0){
+                    gunD=5;
+                }else{
+                    gunD=-5;
+                }
+            }
+            for(var i:number=0;i<weaponNum;i++){
                 let node = EffectSingleCase.instance.show("bullet/bullet_1", this.role.bullet);
                 node.active = true;
     
     
     
                 let endPos = monster.MonsterView.node.getPosition();
-                let startPos = Vec3Util.add(this.role.RoleView.node.getPosition().clone(), new Vec3(10*i, 83, 0));
+                let startPos = Vec3Util.add(this.role.RoleView.node.getPosition().clone(), new Vec3(gunD, gunHeight, 0));
     
                 let offsetPos = Vec3Util.sub(endPos, startPos);
                 dir = Math.atan2(offsetPos.y, offsetPos.x);
@@ -123,9 +138,9 @@ export class RoleViewController extends Component {
                 if (dir < 0) {
                     dir = 0;
                 }
-                node.setPosition(new Vec3(startPos.x + Math.cos(dir * Math.PI / 180) * 100, startPos.y + Math.sin(dir * Math.PI / 180) * 100, 0));
+                node.setPosition(new Vec3(startPos.x + Math.cos(dir * Math.PI / 180) * gunWidth, startPos.y + Math.sin(dir * Math.PI / 180) * gunWidth, 0));
     
-                node.getComponent(Bullet).setData(30, dir);
+                node.getComponent(Bullet).setData(40, dir);
             }
           
             
