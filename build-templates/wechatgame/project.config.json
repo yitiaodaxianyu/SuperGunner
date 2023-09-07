@@ -9,6 +9,7 @@
         "enhance": true,
         "useIsolateContext": true
     },
+    "cloudfunctionRoot": "cloudfunction/",
     "compileType": "game",
     "libVersion": "game",
     "appid": "",
